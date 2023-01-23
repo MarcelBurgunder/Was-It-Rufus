@@ -15,7 +15,7 @@ def main():
         3) Whether the current head commit was authored in the last week
         4) Whether the current head commit was authored by Rufus
     """
-    git_dir = sys.argv[0] if len(sys.argv) > 1 else "./"
+    git_dir = sys.argv[1] if len(sys.argv) > 1 else "./"
     if not path.exists(git_dir):
         print("The provided path: \"" + str(git_dir) + "\" does not exist")
         return
