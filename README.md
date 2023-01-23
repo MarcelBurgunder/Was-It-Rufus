@@ -18,3 +18,5 @@ Setup:
 
 How to run:
 In your terminal, run the python script using the command 'python <path>\wasItRufus.py <git_dir>' 
+
+Note: The exercise instructions indicate that the active branch returned is a boolean; this didn't make much sense to me, so instead my python script is returning a string that denotes the active branch. The program runs just as expected.
