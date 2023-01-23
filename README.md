@@ -3,7 +3,7 @@ Project for Pronto.ai Technical Interview
 
 Background:
 This project includes a Python script that will print specifics about a local git repository.
-This takes in one argument <git_dir> which denotes the local git directory path to assess the git status of.
+This takes in one argument <git_dir> which denotes the local git directory path to assess the git status of. If no argument is passed in, then the script will assume its parent directory as the directory to assess.
 
 If the directory path is invalid, then an error will be printed and the program will exit.
 Otherwise it prints the git repositories:
