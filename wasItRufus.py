@@ -24,7 +24,7 @@ def main():
         rep = Repo(git_dir)
     except exc.InvalidGitRepositoryError:
         print("The provided path: \"" + str(git_dir) + "\" is not a valid git repository")
-        return True
+        return
 
     print("For the git repository \"" + str(git_dir) + "\":")
     print("active branch: " + getActiveBranch(rep))
