@@ -3,7 +3,7 @@ from git import Repo, exc
 from os import path
 from time import time
 
-sevenDays = 604800 # denotes the duration of seven days in seconds
+sevenDays = 7*24*60*60 # denotes the duration of seven days in seconds
 
 def main():
     """
