@@ -2,7 +2,7 @@ Was-It-Rufus - Marcel Burgunder
 Project for Pronto.ai Technical Interview
 
 Background:
-This project includes a python script that will print specifics about a local git repository.
+This project includes a Python script that will print specifics about a local git repository.
 This takes in one argument <git_dir> which denotes the local git directory path to assess the git status of.
 
 If the directory path is invalid, then an error will be printed and the program will exit.
