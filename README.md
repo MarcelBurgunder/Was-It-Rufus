@@ -20,6 +20,6 @@ Setup:
 4. Place the script of this project, wasItRufus.py, in an accessible location. Placing it in the parent directory of the project may make things easier.
 
 How to run:
-In your terminal, run the Python script using the command 'python <path>\wasItRufus.py <git_dir>'.
+In your terminal, run the Python script using the command 'python <path_to_file>\wasItRufus.py <git_dir>'.
 
 Note: The exercise instructions indicate that the active branch returned is a boolean; this didn't make much sense to me, so instead my Python script is returning a string that denotes the active branches name. The program runs just as expected.
