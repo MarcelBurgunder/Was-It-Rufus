@@ -3,7 +3,7 @@ from git import Repo, exc
 from os import path
 from time import time
 
-sevenDays = 7*24*60*60 # denotes the duration of seven days in seconds
+SEVEN_DAYS = 7*24*60*60 # denotes the duration of seven days in seconds
 
 def main():
     """
@@ -15,49 +15,49 @@ def main():
         3) Whether the current head commit was authored in the last week
         4) Whether the current head commit was authored by Rufus
     """
-    dirPath = sys.argv[0] if len(sys.argv) > 1 else "./"
-    if not path.exists(dirPath):
-        print("The provided path: \"" + str(dirPath) + "\" does not exist")
+    git_dir = sys.argv[0] if len(sys.argv) > 1 else "./"
+    if not path.exists(git_dir):
+        print("The provided path: \"" + str(git_dir) + "\" does not exist")
         return
 
     try:
-        repo = Repo(dirPath)
+        rep = Repo(git_dir)
     except exc.InvalidGitRepositoryError:
-        print("The provided path: \"" + str(dirPath) + "\" is not a valid git repository")
+        print("The provided path: \"" + str(git_dir) + "\" is not a valid git repository")
         return True
 
-    print("For the git repository \"" + str(dirPath) + "\":")
-    print("active branch: " + getActiveBranch(repo))
-    print("local changes: " + str(hasLocalChanges(repo)))
-    print("recent commit: " + str(hadRecentCommit(repo)))
-    print("blame Rufus: " + str(blameRufus(repo)))
+    print("For the git repository \"" + str(git_dir) + "\":")
+    print("active branch: " + getActiveBranch(rep))
+    print("local changes: " + str(hasLocalChanges(rep)))
+    print("recent commit: " + str(hadRecentCommit(rep)))
+    print("blame Rufus: " + str(blameRufus(rep)))
     return
 
-def getActiveBranch(repo: Repo) -> str:
+def getActiveBranch(rep: Repo) -> str:
     """
     Returns the active branch of the git repository
     """
-    return repo.active_branch.name
+    return rep.active_branch.name
 
-def hasLocalChanges(repo: Repo) -> bool:
+def hasLocalChanges(rep: Repo) -> bool:
     """
     Returns True if repository files have been modified, False otherwise.
     This includes whether or not there exist new files.
     """
-    return len(repo.head.commit.diff()) > 0
+    return len(rep.head.commit.diff()) > 0
 
-def hadRecentCommit(repo: Repo) -> bool:
+def hadRecentCommit(rep: Repo) -> bool:
     """
     Returns True if the current head commit was authored last week, False otherwise.
     This specifically verifies whether the head was committed within 604800 seconds (7 full days) from the current day and time.
     """
-    return time()-repo.head.commit.committed_date < sevenDays
+    return time()-rep.head.commit.committed_date < SEVEN_DAYS
 
-def blameRufus(repo: Repo) -> bool:
+def blameRufus(rep: Repo) -> bool:
     """
     Returns True the current head commit was authored by Rufus, False otherwise.
     This doesn't respect case sensitivity and strips all spaces; thus RUFUS, ru fus, and r UFus are all equivalent.
     """
-    return "".join(repo.head.commit.author.name.split()).upper() == "RUFUS"
+    return "".join(rep.head.commit.author.name.split()).upper() == "RUFUS"
 
 main()
